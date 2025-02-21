@@ -10,6 +10,9 @@ const Login = () => {
     email: "monika123@gmail.com",
     password: "1234@Moni",
   });
+  const [errors, setErrors] = useState("");
+  console.log("ERRORS", errors?.response?.data?.message);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -22,6 +25,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrors("");
     try {
       const response = await axios.post(
         BASE_URL + "/login",
@@ -31,10 +35,11 @@ const Login = () => {
         },
         { withCredentials: true }
       );
-      console.log("DATA", response.data);
-      dispatch(addUser(response.data));
+      // console.log("DATA", response?.data);
+      dispatch(addUser(response?.data));
       navigate("/");
     } catch (error) {
+      setErrors(error?.response?.data?.message);
       console.error("ERROR", error);
     }
   };
@@ -72,7 +77,7 @@ const Login = () => {
             className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
         </div>
-
+        {errors && <div className="text-red-500 text-sm mb-4">{errors}</div>}
         <button
           type="submit"
           className="w-full p-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition duration-300 cursor-pointer"
