@@ -7,8 +7,8 @@ import { BASE_URL } from "../utils/constants";
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    email: "monika123@gmail.com",
-    password: "1234@Moni",
+    email: "narendra123@gmail.com",
+    password: "1234@Mani",
   });
   const [errors, setErrors] = useState("");
   console.log("ERRORS", errors?.response?.data?.message);
