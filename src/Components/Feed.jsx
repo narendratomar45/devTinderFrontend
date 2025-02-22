@@ -21,6 +21,7 @@ const Feed = () => {
       console.error("ERROR", error);
     }
   };
+
   useEffect(() => {
     getFeed();
   }, []);
